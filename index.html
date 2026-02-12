@@ -2,34 +2,38 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Vask Labs | Em construção...</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vask Labs | Future-Proof Software Engineering</title>
+  
+  <meta name="description" content="Vask Labs - Laboratório de experimentação e engenharia de software Full Stack.">
+  
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
-
 </head>
 <body>
   <div class="glow-orb" aria-hidden="true"></div>
   <div class="glow-orb-secondary" aria-hidden="true"></div>
 
   <main class="page">
-    <section class="card" aria-label="Vask Labs - Página em construção">
-      <div class="badge">
-        <span class="status-dot-wrapper" aria-hidden="true">
-          <span class="status-pulse"></span>
-          <span class="status-dot"></span>
-        </span>
-        <span class="badge-label">Sistema online · Em construção</span>
-      </div>
+    <div class="hero-wrapper">
+    <section class="card" aria-labelledby="hero-title">
+      <header>
+        <div class="badge">
+          <span class="status-dot-wrapper" aria-hidden="true">
+            <span class="status-pulse"></span>
+            <span class="status-dot"></span>
+          </span>
+          <span class="badge-label">Sistema online · Em construção</span>
+        </div>
+        <h1 id="hero-title">
+          <span class="highlight">Vask Labs</span>
+        </h1>
+        <p class="subtitle">Future-Proof Software Engineering</p>
+      </header>
 
-      <h1>
-        <span class="highlight">Vask Labs</span>
-      </h1>
-      <p class="subtitle">Future-Proof Software Engineering</p>
-
-      <div class="divider"></div>
+      <div class="divider" aria-hidden="true"></div>
 
       <div class="meta">
         <div class="meta-block">
@@ -38,10 +42,79 @@
         </div>
         <div class="meta-block">
           <span class="meta-label">Contato</span>
-          <span class="meta-value">vasklabs@gmail.com</span>
+          <a href="mailto:vasklabs@gmail.com" class="meta-value link-email">vasklabs@gmail.com</a>
         </div>
       </div>
+
+      <nav class="card-nav">
+        <a href="#sobre" class="learn-more">Conheça o Lab ↓</a>
+      </nav>
     </section>
+    </div>
+
+    <section id="sobre" class="sobre-section" aria-labelledby="sobre-title">
+      <h2 id="sobre-title">O Laboratório</h2>
+      <p class="tagline">Onde a educação e a engenharia se encontram</p>
+      
+      <div class="sobre-content">
+        <p>
+          A <strong>Vask Labs</strong> nasceu do desejo de unir a base teórica da tecnologia com a prática da engenharia de software. 
+          Este é um espaço dedicado à livre experimentação e ao aperfeiçoamento constante no ecossistema Full Stack.
+        </p>
+        <p>
+          O que começa como um ambiente para o desenvolvimento de aplicações proprietárias, está sendo preparado para se tornar 
+          um hub de soluções tecnológicas compartilhadas.
+        </p>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>&copy; 2026 Vask Labs. Todos os direitos reservados.</p>
+    </footer>
+
   </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const aboutSection = document.getElementById('sobre');
+      const learnMoreLink = document.querySelector('.learn-more');
+
+      if (!aboutSection) return;
+
+      const revealAbout = () => {
+        aboutSection.classList.add('is-visible');
+      };
+
+      if (learnMoreLink) {
+        learnMoreLink.addEventListener('click', function () {
+          // garante que a animação aconteça logo após o scroll suave
+          setTimeout(revealAbout, 250);
+        });
+      }
+
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                revealAbout();
+                observer.disconnect();
+              }
+            });
+          },
+          { threshold: 0.3 }
+        );
+
+        observer.observe(aboutSection);
+      } else {
+        window.addEventListener('scroll', function () {
+          const rect = aboutSection.getBoundingClientRect();
+          if (rect.top < window.innerHeight * 0.8) {
+            revealAbout();
+          }
+        });
+      }
+    });
+  </script>
 </body>
 </html>
