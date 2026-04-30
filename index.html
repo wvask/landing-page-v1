@@ -11,6 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;700&family=Sora:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <script src="scripts.js" defer></script>
 </head>
 <body>
   <div class="glow-orb" aria-hidden="true"></div>
@@ -19,47 +20,44 @@
   <main class="page">
     <div class="hero-wrapper">
     <section class="card" aria-labelledby="hero-title">
-      <header class="card-header">
-        <div class="logo-container">
-          <img src="assets/Marca0.png" alt="Vask Labs Logo" class="brand-logo">
+      <header class="card__header">
+        <div class="card__logo-container">
+          <img src="assets/Marca0.png" alt="Vask Labs Logo" class="card__logo">
         </div>
         
-        <div class="badge">
-          <span class="status-dot-wrapper" aria-hidden="true">
-            <span class="status-pulse"></span>
-            <span class="status-dot"></span>
+        <div class="card__badge badge">
+          <span class="badge__status" aria-hidden="true">
+            <span class="badge__pulse"></span>
+            <span class="badge__dot"></span>
           </span>
-          <span class="badge-label">Sistema online · Em construção</span>
+          <span class="badge__label">Sistema online · Em construção</span>
         </div>
       </header>
 
-      <div class="divider" aria-hidden="true"></div>
+      <div class="card__divider" aria-hidden="true"></div>
 
-      <div class="meta">
-        <div class="meta-block">
-          <span class="meta-label">Lançamento</span>
-          <span class="meta-value">Em breve · 2026</span>
+      <div class="card__meta meta">
+        <div class="meta__block">
+          <span class="meta__label">Lançamento</span>
+          <span class="meta__value">Em breve · 2026</span>
         </div>
-        <div class="meta-block">
-          <span class="meta-label">Contato</span>
-          <a href="mailto:contato@vasklabs.com" class="meta-value link-email">contato@vasklabs.com</a>
+        <div class="meta__block">
+          <span class="meta__label">Contato</span>
+          <a href="mailto:contato@vasklabs.com" class="meta__value meta__value--link">contato@vasklabs.com</a>
         </div>
       </div>
 
-      <nav class="card-nav">
-        <a href="#sobre" class="learn-more">Conheça o Lab ↓</a>
+      <nav class="card__nav">
+        <a href="#sobre" class="card__link learn-more">Conheça o Lab ↓</a>
       </nav>
     </section>
     </div>
 
-
-
-    
-    <section id="sobre" class="sobre-section" aria-labelledby="sobre-title">
-      <h2 id="sobre-title">O Laboratório</h2>
-      <p class="tagline">Onde a educação e a engenharia se encontram</p>
+    <section id="sobre" class="sobre" aria-labelledby="sobre-title">
+      <h2 id="sobre-title" class="sobre__title">O Laboratório</h2>
+      <p class="sobre__tagline">Onde a educação e a engenharia se encontram</p>
       
-      <div class="sobre-content">
+      <div class="sobre__content">
         <p>
           A <strong>Vask Labs</strong> nasceu do desejo de unir a base teórica da tecnologia com a prática da engenharia de software. 
           Este é um espaço dedicado à livre experimentação e ao aperfeiçoamento constante no ecossistema Full Stack.
@@ -72,52 +70,9 @@
     </section>
 
     <footer class="footer">
-      <p>&copy; 2026 Vask Labs. Todos os direitos reservados.</p>
+      <p class="footer__text">&copy; 2026 Vask Labs. Todos os direitos reservados.</p>
     </footer>
 
   </main>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const aboutSection = document.getElementById('sobre');
-      const learnMoreLink = document.querySelector('.learn-more');
-
-      if (!aboutSection) return;
-
-      const revealAbout = () => {
-        aboutSection.classList.add('is-visible');
-      };
-
-      if (learnMoreLink) {
-        learnMoreLink.addEventListener('click', function () {
-          // garante que a animação aconteça logo após o scroll suave
-          setTimeout(revealAbout, 250);
-        });
-      }
-
-      if ('IntersectionObserver' in window) {
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                revealAbout();
-                observer.disconnect();
-              }
-            });
-          },
-          { threshold: 0.3 }
-        );
-
-        observer.observe(aboutSection);
-      } else {
-        window.addEventListener('scroll', function () {
-          const rect = aboutSection.getBoundingClientRect();
-          if (rect.top < window.innerHeight * 0.8) {
-            revealAbout();
-          }
-        });
-      }
-    });
-  </script>
 </body>
 </html>
